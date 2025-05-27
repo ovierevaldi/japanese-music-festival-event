@@ -4,17 +4,75 @@ import bg1 from './assets/bg 1.png'
 import bg2 from './assets/bg 2 1.png'
 import wa from './assets/wa.png'
 import email from './assets/email.jpg'
+import { useEffect, useState } from 'react'
+
+type TimerProp = {
+  days: number,
+  hours: number,
+  minutes: number,
+  seconds: number
+};
 
 function App() {
+  const dateFormat: Intl.DateTimeFormatOptions = {
+    weekday: 'long',     // "Monday"
+    year: 'numeric',     // "2025"
+    month: 'long',       // "May"
+    day: 'numeric',      // "27"
+    hour: 'numeric',     // "3"
+    minute: '2-digit',   // "45"
+    hour12: true         // "PM"
+  };
+
+  const eventTitle = 'Harmony of Japan';
+  const eventStart = new Date('June 5, 2025 10:00:00');
+  const eventEnd = new Date('June 5, 2025 17:00:00');
+  const eventMessage = 'Join us for a night of Japanese music and culture!';
+  const eventLocation = '742 Evergreen Terrace, Springfield, IL 62704, USA';
+
+  const formatGoogleDate = (localDate: Date) => {
+    return localDate.toISOString().replace(/[-:]/g, "").split('.')[0] + "Z";
+  }
+ 
+  const calculateDifference = (): TimerProp => {
+    const difference = eventStart.getTime() - new Date().getTime();
+
+    if(difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    }
+  }
+
+  const [currentTimer, setCurrentTimer] = useState<TimerProp>(calculateDifference());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const updatedTimer = calculateDifference();
+
+      if(updatedTimer.days === 0 && updatedTimer.hours === 0 && updatedTimer.minutes === 0 && updatedTimer.seconds === 0) {
+        clearInterval(timer);
+      };
+
+      setCurrentTimer(calculateDifference())
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [])
 
   return (
     <>
+    {console.log(formatGoogleDate(eventStart))}
+    {console.log(formatGoogleDate(eventEnd))}
       <div className="bg-cover bg-center h-screen font-bold" style={{ backgroundImage: `url(${bg1})`}}>
-        <p className='text-8xl text-center py-8'>Harmony of Japan</p>
+        <p className='text-8xl text-center py-8'>{eventTitle}</p>
 
         <div className='text-center font-bold'>
           <p className='text-5xl py-4'>Countdown Event:</p>
-          <p className='text-7xl py-4'>00:00:00</p>
+          <p className='text-7xl py-4'>{currentTimer.days} Day(s) { currentTimer.hours}: {currentTimer.minutes}:{currentTimer.seconds}</p>
         </div>
 
         <div className='flex gap-x-10 mx-auto py-8' style={{ maxWidth: '1200px'}}>
@@ -32,7 +90,7 @@ function App() {
       <div className="bg-cover bg-center h-screen font-bold" style={{ backgroundImage: `url(${bg2})`, position: 'relative'}}>
           <div>
             <p className='text-6xl text-center py-8'>Date & Location</p>
-            <p className='text-4xl text-center py-4'>Friday, 25-Jun-2012</p>
+            <p className='text-4xl text-center py-4'> {new Intl.DateTimeFormat('en-US', dateFormat).format(eventStart)}</p>
             <p className='text-4xl text-center py-4'>
               742 Evergreen Terrace, Springfield,
               <br />
@@ -45,7 +103,7 @@ function App() {
               </a>
 
               <a 
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Japan%20Music%20Festival&dates=20250614T190000/20250614T230000&details=Join%20us%20for%20a%20night%20of%20Japanese%20music%20and%20culture!&location=742%20Evergreen%20Terrace,%20IL%2062704"
+                href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${formatGoogleDate(eventStart)}%2F${formatGoogleDate(eventEnd)}&details=${eventMessage}!&location=${eventLocation}`}
                  className='bg-[#003AFA] p-4 rounded-lg py-4 px-8 cursor-pointer hover:bg-[#0026C4] transition duration-300'>
                 <p className='text-2xl'>Save To Calendar <i className="fa-solid fa-calendar-days"></i></p>
               </a>
