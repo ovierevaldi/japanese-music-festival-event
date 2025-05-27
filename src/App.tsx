@@ -29,7 +29,7 @@ function App() {
         </div>
       </div>
 
-      <div className="bg-cover bg-center h-screen font-bold" style={{ backgroundImage: `url(${bg2})`}}>
+      <div className="bg-cover bg-center h-screen font-bold" style={{ backgroundImage: `url(${bg2})`, position: 'relative'}}>
           <div>
             <p className='text-6xl text-center py-8'>Date & Location</p>
             <p className='text-4xl text-center py-4'>Friday, 25-Jun-2012</p>
@@ -40,13 +40,15 @@ function App() {
             </p>
 
             <div className='flex gap-x-12 w-full justify-center py-8'>
-              <button className='bg-[#003AFA] py-4 px-8 rounded-lg cursor-pointer hover:bg-[#0026C4] transition duration-300'>
-                <p className='text-2xl'>View On Maps <i className="fa-solid fa-location-dot"></i></p>
-              </button>
+              <a href='https://maps.app.goo.gl/ERq9iNNRvsxxAJZs7' target='_blank'  className='bg-[#003AFA] py-4 px-8 rounded-lg cursor-pointer hover:bg-[#0026C4] transition duration-300'>
+                <p className='text-2xl'>View On GMaps <i className="fa-solid fa-location-dot"></i></p>
+              </a>
 
-              <button className='bg-[#003AFA] p-4 rounded-lg py-4 px-8 cursor-pointer hover:bg-[#0026C4] transition duration-300'>
+              <a 
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Japan%20Music%20Festival&dates=20250614T190000/20250614T230000&details=Join%20us%20for%20a%20night%20of%20Japanese%20music%20and%20culture!&location=742%20Evergreen%20Terrace,%20IL%2062704"
+                 className='bg-[#003AFA] p-4 rounded-lg py-4 px-8 cursor-pointer hover:bg-[#0026C4] transition duration-300'>
                 <p className='text-2xl'>Save To Calendar <i className="fa-solid fa-calendar-days"></i></p>
-              </button>
+              </a>
             </div>
           </div>
           
@@ -56,17 +58,22 @@ function App() {
             <p className='text-6xl text-center mb-12'>Contact Us</p>
 
            <div className='flex gap-x-16 w-full justify-center'>
-             <div>
+             <a href='https://wa.me/6285155435604' target='_blank'>
                 <img src={wa} alt="" style={{ width: '100px', margin: 'auto'}} className='pb-4 hover:scale-110 cursor-pointer'/>
                 <p className='text-xl'>+62 851 5543 5604</p>
-              </div>
+              </a>
 
-              <div>
+              <a href="mailto:example@gmail.com" target='_blank'>
                 <img src={email} alt="" style={{ width: '100px', margin: 'auto'}} className='pb-4 hover:scale-110 cursor-pointer'/>
                 <p className='text-xl'>EXAMPLE@GMAIL.COM</p>
-              </div>
+              </a>
            </div>
           </div>
+
+          <footer className='flex justify-between text-xl bg-[#000] py-4 opacity-[85%] px-8' style={{ position: 'absolute', bottom: 0, width: '100%'}}>
+            <p className='font-normal'>© 2023 Harmony of Japan. All rights reserved.</p>
+            <p className='font-normal'>CC 2025</p>
+          </footer>
       </div>
     </>
   )
