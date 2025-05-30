@@ -65,20 +65,20 @@ function App() {
 
   return (
     <>
-    <div className="bg-cover bg-center md:h-screen font-bold" style={{ backgroundImage: `url(${bg1})`}}>
-      <p className='text-5xl md:text-8xl text-center py-4 md:py-8'>{eventTitle}</p>
+    <div className="bg-cover bg-center lg:h-screen font-bold" style={{ backgroundImage: `url(${bg1})`}}>
+      <p className='text-5xl md:text-6xl lg:text-8xl text-center py-4 md:py-8'>{eventTitle}</p>
 
       <div className='text-center font-bold'>
-        <p className='text-2xl md:text-5xl py-2 md:py-4'>Countdown Event:</p>
-        <p className='text-4xl md:text-7xl py-2 md:py-4'>{currentTimer.days} Day(s) { currentTimer.hours}: {currentTimer.minutes}:{currentTimer.seconds}</p>
+        <p className='text-2xl md:text-3xl lg:text-5xl py-2 md:py-4'>Countdown Event:</p>
+        <p className='text-4xl md:text-5xl lg:text-7xl py-2 md:py-4'>{currentTimer.days} Day(s) { currentTimer.hours}: {currentTimer.minutes}:{currentTimer.seconds}</p>
       </div>
 
-      <div className='flex flex-col md:flex-row gap-x-10 mx-auto py-8' style={{ maxWidth: '1200px'}}>
-        <img src={displayImg} className='p-2 w-[350px] md:w-[550px] mx-auto'/>
+      <div className='flex flex-col lg:flex-row gap-x-10 mx-auto py-8' style={{ maxWidth: '1200px'}}>
+        <img src={displayImg} className='p-2 w-[350px] lg:w-[550px] mx-auto'/>
         <div className='text-center'>
-          <p className='text-2xl md:text-5xl mb-2 md:mb-4'>Harmony of Japan</p>
-          <p className='text-xl md:text-3xl mb-2 md:mb-4'>A Music Celebration</p>
-          <p className='text-sm md:text-xl px-4 md:px-0'>
+          <p className='text-2xl md:text-4xl lg:text-5xl mb-2 md:mb-4'>Harmony of Japan</p>
+          <p className='text-xl md:text-2xl lg:text-3xl mb-2 md:mb-4'>A Music Celebration</p>
+          <p className='text-sm md:text-base lg:text-xl px-4 md:px-0'>
             Step into a world where ancient rhythms and futuristic beats collide. Harmony of Japan is a two-day music festival in the heart of Tokyo that celebrates the full spectrum of Japanese sound—from centuries-old traditions to cutting-edge modern pop. Whether you're a lover of taiko drums, anime soundtracks, or viral J-Pop anthems, this event offers an immersive cultural experience like no other.
           </p>
         </div>
@@ -87,24 +87,24 @@ function App() {
 
     <div className="bg-cover bg-center h-screen font-bold" style={{ backgroundImage: `url(${bg2})`, position: 'relative'}}>
         <div>
-          <p className='text-3xl md:text-6xl text-center py-8'>Date & Location</p>
-          <p className='text-xl md:text-4xl text-center py-2 md:py-4 px-4'> {new Intl.DateTimeFormat('en-US', dateFormat).format(eventStart)}</p>
-          <p className='text-xl md:text-4xl text-center py-2 md:py-4 px-4'>
+          <p className='text-3xl md:text-5xl lg:text-6xl text-center py-8'>Date & Location</p>
+          <p className='text-xl md:text-3xl lg:text-4xl text-center py-2 md:py-4 px-4'> {new Intl.DateTimeFormat('en-US', dateFormat).format(eventStart)}</p>
+          <p className='text-xl md:text-3xl lg:text-4xl text-center py-2 md:py-4 px-4'>
             742 Evergreen Terrace, Springfield,
             <br />
             IL 62704, USA
           </p>
 
-          <div className='flex gap-x-6 md:gap-x-12 w-full justify-center py-8'>
+          <div className='flex gap-x-6 md:gap-x-10 lg:gap-x-12 w-full justify-center py-8 text-sm md:text-xl lg:text-2xl'>
             <a href='https://maps.app.goo.gl/ERq9iNNRvsxxAJZs7' target='_blank'  
               className='bg-[#003AFA] py-4 px-4 md:px-8 rounded-lg cursor-pointer hover:bg-[#0026C4] transition duration-300'>
-              <p className='text-sm md:text-2xl'>View On GMaps <i className="fa-solid fa-location-dot"></i></p>
+              <p >View On GMaps <i className="fa-solid fa-location-dot"></i></p>
             </a>
 
             <a 
               href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${formatGoogleDate(eventStart)}%2F${formatGoogleDate(eventEnd)}&details=${eventMessage}!&location=${eventLocation}`}
                 className='bg-[#003AFA] p-4 rounded-lg py-4 px-4 md:px-8 cursor-pointer hover:bg-[#0026C4] transition duration-300'>
-              <p className='text-sm md:text-2xl'>Save To Calendar <i className="fa-solid fa-calendar-days"></i></p>
+              <p>Save To Calendar <i className="fa-solid fa-calendar-days"></i></p>
             </a>
           </div>
         </div>
@@ -112,22 +112,22 @@ function App() {
         <br />
 
         <div>
-          <p className='text-3xl md:text-6xl text-center mb-8 md:mb-12'>Contact Us</p>
+          <p className='text-3xl md:text-3xl lg:text-6xl text-center mb-8 md:mb-10 lg:mb-12'>Contact Us</p>
 
-          <div className='flex gap-x-8 md:gap-x-16 w-full justify-center'>
+          <div className='flex gap-x-8 md:gap-x-16 w-full justify-center text-sm md:text-base lg:text-xl'>
             <a href='https://wa.me/6285155435604' target='_blank'>
               <img src={wa} alt="" style={{ margin: 'auto'}} className='pb-4 hover:scale-110 cursor-pointer w-[75px] md:w-[100px]'/>
-              <p className='text-sm md:text-xl'>+62 851 5543 5604</p>
+              <p>+62 851 5543 5604</p>
             </a>
 
             <a href="mailto:example@gmail.com" target='_blank'>
               <img src={email} alt="" style={{ margin: 'auto'}} className='pb-4 hover:scale-110 cursor-pointer w-[75px] md:w-[100px]'/>
-              <p className='text-sm md:text-xl'>EXAMPLE@GMAIL.COM</p>
+              <p>EXAMPLE@GMAIL.COM</p>
             </a>
           </div>
         </div>
 
-        <footer className='md:flex md:justify-between text-sm md:text-xl bg-[#000] py-4 opacity-[85%] px-8' style={{ position: 'absolute', bottom: 0, width: '100%'}}>
+        <footer className='md:flex md:justify-between text-sm md:text-base lg:text-xl bg-[#000] py-4 opacity-[85%] px-8' style={{ position: 'absolute', bottom: 0, width: '100%'}}>
           <p className='font-normal mb-2 md:mb-0'>© 2023 Harmony of Japan. All rights reserved.</p>
           <p className='font-normal text-center md:text-left'>CC 2025</p>
         </footer>
